@@ -77,7 +77,7 @@ async def _(event):
                 event.chat_id,
                 out_file,
                 force_document=True,
-                thumb="https://telegra.ph/file/3ca2e9a50af59d04370ac.jpg",
+                thumb="Dasha/resources/Dasha.jpg",
                 allow_cache=False,
                 caption=f"```{cmd}```" if len(cmd) < 998 else None,
                 reply_to=reply_to_id,
