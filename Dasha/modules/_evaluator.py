@@ -33,7 +33,7 @@ async def ebent(event):
 async def _(event):
     if len(event.text) > 5 and event.text[5] != " ":
         return
-    xx = await event.edit('`Processing..`')
+  #  xx = await event.edit('`Processing..`')
     try:
         cmd = event.text.split(" ", maxsplit=1)[1]
     except IndexError:
@@ -63,30 +63,25 @@ async def _(event):
         evaluation = stdout
     else:
         evaluation = ("Success")
-    final_output = (
-        "__►__ **EVALPy**\n```{}``` \n\n __►__ **OUTPUT**: \n```{}``` \n".format(
-            cmd,
-            evaluation,
-        )
-    )
-    if len(final_output) > 4096:
-        lmao = final_output.replace("`", "").replace("**", "").replace("__", "")
-        with io.BytesIO(str.encode(lmao)) as out_file:
-            out_file.name = "eval.txt"
-            await event.client.send_file(
+
+    final_output = "**OUTPUT**:\n\n`{}`".format(evaluation)
+    MAX_MESSAGE_SIZE_LIMIT = 4095
+    if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
+        with io.BytesIO(str.encode(final_output)) as out_file:
+            out_file.name = "eval.text"
+            await ubot.send_file(
                 event.chat_id,
                 out_file,
-                force_document=True,
                 thumb="Dasha/resources/Dasha.jpg",
+                force_document=True,
                 allow_cache=False,
-                caption=f"```{cmd}```" if len(cmd) < 998 else None,
+                caption=cmd,
                 reply_to=reply_to_id,
             )
-            await xx.delete()
+
     else:
-        await xx.edit(final_output)
-
-
+        await event.reply(final_output)
+        
 async def aexec(code, event):
     exec(
         (
