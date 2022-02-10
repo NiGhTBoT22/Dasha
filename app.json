@@ -4,7 +4,6 @@
       "repository" : "https://github.com/TAMILVIP007/Dasha",
       "logo" : "https://telegra.ph//file/7eb582eca88f924bd6eb8.jpg",
       "keywords" : ["python3", "telethon"],
-      "repository": "https://github.com/Tamilvip007/dasha",
       "env" : {
          "TOKEN" : {
             "description" : "Get from @botfather",
