@@ -1,4 +1,4 @@
-from Dasha import ubot, tbot
+from Dasha import ubot, tbot, TOKEN
 import Dasha.events
 import sys
 

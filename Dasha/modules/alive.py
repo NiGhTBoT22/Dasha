@@ -2,6 +2,7 @@ from Dasha.events import dasha
 from Dasha import StartTime
 import time, datetime
 from . import get_readable_time
+from .. import ubot
 from telethon import Button, version
 
 @dasha(pattern="^/ping")
@@ -25,7 +26,8 @@ async def repo(event):
 @dasha(pattern="^/alive$")
 async def alive(event):
  try:
-    chat = await event.get_chat()
+    id = (await ubot.get_entity("me")).id
+    name = (await ubot.get_entity("me")).first_name
     await event.delete()
     uptime = get_readable_time((time.time() - StartTime))
     x = "**               【  𝙳𝙰𝚂𝙷𝙰 𝙸𝚂 𝙰𝙻𝙸𝚅𝙴 】 **\n\n"
@@ -36,7 +38,8 @@ async def alive(event):
 
     x += f"➾ **ᴜᴘᴛɪᴍᴇ** ☞ `{uptime}`\n"
     x +=f'**=============================**\n\n'
-    x += f"➾ **ᴍʏ ᴍᴀsᴛᴇʀ** ☞ **『 [Iɴᴅʀᴀᴊɪᴛʜ](tg://user?id=1633375527) 』** \n\n"
+    x += f"➾ **ᴍʏ ᴍᴀsᴛᴇʀ** ☞ **『 [{name}](tg://user?id={id}) 』** \n\n"
+    x += f"© @Tamilvip007\n\n"
     lol = await event.client.send_file(event.chat_id, file='Dasha/resources/lol.mp4', caption=x)
  except Exception as v:
    await event.respond(str(v))

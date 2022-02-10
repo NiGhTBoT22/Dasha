@@ -9,16 +9,6 @@ from Dasha import ubot
 @dasha(pattern='^/stat')
 async def stat(event):
       await event.edit(f'➤ 𝚃𝚘𝚝𝚊𝚕 𝙽𝚘 𝙾𝚏 𝙼𝚎𝚜𝚜𝚊𝚐𝚎𝚜 𝙸𝚗 **{event.chat.title}** **:** `{event.id}`')
-
-@dasha(pattern='^/speedtest$')
-async def test(event):
-      lol=await event.edit('`Processing....`')
-      s = speedtest.Speedtest()
-      s.download()
-      s.upload()
-      x=s.results.share()
-      await lol.delete()
-      await event.reply(file=x)
       
 @dasha(pattern="^/vdl$")
 async def lmao(event):
@@ -119,8 +109,3 @@ async def lol(event):
     await event.delete()
     await event.client.send_file(event.chat_id, pic , caption=title)
     
-@ubot.on(events.NewMessage(incoming=True))
-async def kek(e):
-    for y in ['in_progress','completed','requested','queued']:
-         if y in e.text and e.sender.id == 2080460107 and e.chat.id == 1544622735:
-           await e.delete()
